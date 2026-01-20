@@ -3,6 +3,26 @@ const buttonNumberOfCharacters = document.getElementById('button-number-of-chara
 const displayCharacters = document.getElementById('display-characters');
 
 const statNames = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+const statsAndMods = [
+    {stat: 1, mod: -4},
+    {stat: 2, mod: -4},
+    {stat: 3, mod: -4},
+    {stat: 4, mod: -3},
+    {stat: 5, mod: -3},
+    {stat: 6, mod: -2},
+    {stat: 7, mod: -2},
+    {stat: 8, mod: -1},
+    {stat: 9, mod: -1},
+    {stat: 10, mod: 0},
+    {stat: 11, mod: 0},
+    {stat: 12, mod: 1},
+    {stat: 13, mod: 1},
+    {stat: 14, mod: 2},
+    {stat: 15, mod: 2},
+    {stat: 16, mod: 3},
+    {stat: 17, mod: 3},
+    {stat: 18, mod: 4}
+];
 
 function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
     let characters = [];
