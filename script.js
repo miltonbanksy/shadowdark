@@ -26,9 +26,9 @@ const statsAndMods = [
 
 function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
     let characters = [];
+    displayCharacters.innerHTML = '';
 
     for (c = 1; c <= numberOfCharacters; c++ ) {
-        const characterCard = document.createElement('p');
         let allStatsBag = [];
     
         for ( s = 1; s <= numberOfStats; s++ ) {
@@ -42,20 +42,49 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
             const sumThreeDice = oneStatBag.reduce((acc, curr) => acc + curr, 0);
             allStatsBag.push(sumThreeDice);
         }
-
-        console.log(`Stats: ${allStatsBag}`);
         
-        const combinedStats = Object.fromEntries(
-            statNames.map((key, index) => [key, allStatsBag[index]])
-        );
+        const characterCard = document.createElement('div');
+        characterCard.classList.add('character-card');
 
-        console.log(combinedStats);
-        characters.push(combinedStats);
-        characterCard.appendChild(characters.keys);
+        const title = document.createElement('h3');
+        title.textContent = `Character ${c}`;
+        characterCard.appendChild(title);
+
+        const statList = document.createElement('ul');
+
+        statNames.forEach((statNames, index) => {
+            const li = document.createElement('li');
+            li.textContent = `${statNames}: ${allStatsBag[index]}`;
+            statList.appendChild(li);
+        });
+
+        characterCard.appendChild(statList);
         displayCharacters.appendChild(characterCard);
     }
-    
-    console.log(characters);
+}
+
+function getModifier(stat) {
+    return statsAndMods.find(s => s.stat === stat).mod;
+}
+
+function displayArrayOfObjects(array) {
+    displayCharacters.innerHTML = '';
+
+    array.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
+
+        let content = '';
+        for (const key in item) {
+            if (Object.hasOwnProperty.call(item, key)) {
+                const value = item[key];
+                content += `<strong>${key}:</strong> ${value}<br>`;
+            }
+        }
+        itemDiv.innerHTML = content;
+
+        displayCharacters.appendChild(itemDiv);
+    })
 }
 
 buttonNumberOfCharacters.addEventListener('click', () => {
