@@ -43,6 +43,8 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
             allStatsBag.push(sumThreeDice);
         }
         
+        // Display Style 1 - Bullet List Format //
+        /*
         const characterCard = document.createElement('div');
         characterCard.classList.add('character-card');
 
@@ -59,6 +61,33 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
         });
 
         characterCard.appendChild(statList);
+        displayCharacters.appendChild(characterCard);
+        */
+
+        // Display Style 2 - Table Format //
+        
+        const characterCard = document.createElement('div');
+        characterCard.classList.add('character-card');
+
+        characterCard.innerHTML = `<h3>Character ${c}</h3>`;
+
+        const table = document.createElement('table');
+
+        statNames.forEach((statName, index) => {
+            
+            const statValue = allStatsBag[index];
+            const mod = getModifier(statValue);
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${statName}</td>
+                <td>${statValue}</td>
+                <td>(${mod >= 0 ? '+' : ''}${mod})</td>
+            `;
+            table.appendChild(row);
+        });
+
+        characterCard.appendChild(table);
         displayCharacters.appendChild(characterCard);
     }
 }

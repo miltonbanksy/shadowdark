@@ -1,0 +1,14 @@
+.character-card {
+    border: 1px solid #aaa;
+    padding: 10px;
+    margin: 10px 0;
+    width: 200px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 4px;
+}
