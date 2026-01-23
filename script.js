@@ -43,13 +43,11 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
     for (c = 1; c <= numberOfCharacters; c++ ) {
         
         let ancestry = generateAncestry();
-        console.log(`returned ancestry: ${ancestry}`); // undefined. Not catching returned ancestry...
         ancestryBag.push(ancestry);
-        console.log(`Ancestry Bag: ${ancestryBag}`)
 
         let allStatsBag = [];
     
-        for ( s = 1; s <= numberOfStats; s++ ) {
+        for ( s = 1; s <= numberOfStats; s++ ) { // For each Character...
             let oneStatBag = [];
             
             for ( d = 1; d <= numberOfDice; d++ ) {
@@ -82,6 +80,9 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
             `;
             table.appendChild(row);
         });
+
+        const ancestryDescription = document.createElement('p');
+        ancestryDescription.innerHTML = 
 
         characterCard.appendChild(table);
         displayCharacters.appendChild(characterCard);
