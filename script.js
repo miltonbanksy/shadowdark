@@ -33,21 +33,17 @@ function roll_1dx(dieSize) { // Roll a single polyhedral die
     return Math.floor(Math.random() * dieSize ) + 1;
 }
 
+function generateHP() {
+    //...
+}
+
 
 function generateAncestry() {
-    
-    // old (random / equal chance generator)
-    //const index = Math.floor(Math.random() * ancestryData.length);
-
     const dieRoll = roll_1dx(12);
 
     const ancestry = ancestryData.find(item => item.d12_target >= dieRoll);
     console.log(ancestry.ancestry);
     
-    // old return
-    //return ancestryData[index];
-
-    // new return
     return ancestry;
 }
 
