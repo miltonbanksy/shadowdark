@@ -29,10 +29,26 @@ let ancestryData = [];
 // fetch json file
 fetch('ancestry.json').then(res => res.json()).then(data => ancestryData = data);
 
+function roll_1dx(dieSize) { // Roll a single polyhedral die
+    return Math.floor(Math.random() * dieSize ) + 1;
+}
+
 
 function generateAncestry() {
-    const index = Math.floor(Math.random() * ancestryData.length);
-    return ancestryData[index].ancestry;
+    
+    // old (random / equal chance generator)
+    //const index = Math.floor(Math.random() * ancestryData.length);
+
+    const dieRoll = roll_1dx(12);
+
+    const ancestry = ancestryData.find(item => item.d12_target >= dieRoll);
+    console.log(ancestry.ancestry);
+    
+    // old return
+    //return ancestryData[index];
+
+    // new return
+    return ancestry;
 }
 
 function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
@@ -63,7 +79,7 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
         const characterCard = document.createElement('div');
         characterCard.classList.add('character-card');
 
-        characterCard.innerHTML = `<h3>Character ${c} ${ancestry}</h3>`;
+        characterCard.innerHTML = `<h3>Level 0 ${ancestry.ancestry}</h3>`;
 
         const table = document.createElement('table');
 
@@ -82,9 +98,10 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
         });
 
         const ancestryDescription = document.createElement('p');
-        ancestryDescription.innerHTML = 
+        ancestryDescription.innerHTML = ancestry.notes;
 
         characterCard.appendChild(table);
+        characterCard.appendChild(ancestryDescription);
         displayCharacters.appendChild(characterCard);
     }
 }
