@@ -24,11 +24,29 @@ const statsAndMods = [
     {stat: 18, mod: 4}
 ];
 
-function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
-    let characters = [];
-    displayCharacters.innerHTML = '';
+let ancestryData = [];
 
+// fetch json file
+fetch('ancestry.json').then(res => res.json()).then(data => ancestryData = data);
+
+
+function generateAncestry() {
+    const index = Math.floor(Math.random() * ancestryData.length);
+    return ancestryData[index].ancestry;
+}
+
+function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
+    
+    displayCharacters.innerHTML = '';
+    
+    let ancestryBag = [];
     for (c = 1; c <= numberOfCharacters; c++ ) {
+        
+        let ancestry = generateAncestry();
+        console.log(`returned ancestry: ${ancestry}`); // undefined. Not catching returned ancestry...
+        ancestryBag.push(ancestry);
+        console.log(`Ancestry Bag: ${ancestryBag}`)
+
         let allStatsBag = [];
     
         for ( s = 1; s <= numberOfStats; s++ ) {
@@ -43,33 +61,11 @@ function generateStatArray(numberOfCharacters, numberOfStats, numberOfDice) {
             allStatsBag.push(sumThreeDice);
         }
         
-        // Display Style 1 - Bullet List Format //
-        /*
-        const characterCard = document.createElement('div');
-        characterCard.classList.add('character-card');
-
-        const title = document.createElement('h3');
-        title.textContent = `Character ${c}`;
-        characterCard.appendChild(title);
-
-        const statList = document.createElement('ul');
-
-        statNames.forEach((statNames, index) => {
-            const li = document.createElement('li');
-            li.textContent = `${statNames}: ${allStatsBag[index]}`;
-            statList.appendChild(li);
-        });
-
-        characterCard.appendChild(statList);
-        displayCharacters.appendChild(characterCard);
-        */
-
-        // Display Style 2 - Table Format //
         
         const characterCard = document.createElement('div');
         characterCard.classList.add('character-card');
 
-        characterCard.innerHTML = `<h3>Character ${c}</h3>`;
+        characterCard.innerHTML = `<h3>Character ${c} ${ancestry}</h3>`;
 
         const table = document.createElement('table');
 
