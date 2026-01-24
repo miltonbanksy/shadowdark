@@ -1,9 +1,17 @@
 html {
     padding: 10px;
-    max-width: 500px;
+    max-width: 480px;
+    background-color: aliceblue;
+}
+
+#input-number-of-characters {
+    width: 40px;
 }
 .character-card {
     border: 1px solid #aaa;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px gray;
+    background-color: antiquewhite;
     padding: 10px;
     margin: 10px 0;
     width: 100%;
