@@ -10,6 +10,7 @@ let ancestryData = [];
 // fetch json files
 fetch('ancestry.json').then(res => res.json()).then(data => ancestryData = data);
 fetch('statsAndMods.json').then(res => res.json()).then(data => statsAndMods = data);
+fetch('backgrounds.json').then(res => res.json()).then(data => backgroundsData = data);
 
 
 function getModifier(stat) {

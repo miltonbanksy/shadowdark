@@ -1,0 +1,22 @@
+[
+    {"background": "Urchin", "notes": "You grew up in the merciless streets of a large city."},
+    {"background": "Wanted", "notes": "There's a price on your head, but you have allies."},
+    {"background": "Cult Initiate", "notes": "You know blasphemous secrets and rituals."},
+    {"background": "Thieves' Guild", "notes": "You have connections, contacts, and debts."},
+    {"background": "Banished", "notes": "Your people cast you out for supposed crimes."},
+    {"background": "Fostered", "notes": "An unusual guardian rescued and raised you."},
+    {"background": "Wizard's Apprentice", "notes": "You have a knack and eye for magic."},
+    {"background": "Jeweler", "notes": "You can easily appraise value and authenticity."},
+    {"background": "Herbalist", "notes": "You know plants, medicines, and poisons."},
+    {"background": "Barbarian", "notes": "You left the horde, but it never quite left you."},
+    {"background": "Mercenary", "notes": "You fought friend and foe alike for your coin."},
+    {"background": "Sailor", "notes": "Pirate, privateer, or merchant — the seas are yours."},
+    {"background": "Acolyte", "notes": "You're well trained in religious rites and doctrines."},
+    {"background": "Soldier", "notes": "You served as a fighter in an organized army."},
+    {"background": "Ranger", "notes": "The woods and wilds are your true home."},
+    {"background": "Scout", "notes": "You survived on stealth, observation, and speed."},
+    {"background": "Minstrel", "notes": "You've traveled far with your charm and talent."},
+    {"background": "Scholar", "notes": "You know much about ancient history and lore."},
+    {"background": "Noble", "notes": "A famous name has opened many doors for you."},
+    {"background": "Chirurgeon", "notes": "You know anatomy, surgery, and first aid."}
+]
