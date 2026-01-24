@@ -1,8 +1,8 @@
 const dungeon_type = [
     {roll: 2, type: "Cave"},
     {roll: 3, type: "Tomb"},
-    {roll: 4, type: "Deep Tunnels"},
-    {roll: 6, type: "Ruins"}
+    {roll: 4, type: "Deep Tunnel"},
+    {roll: 6, type: "Ruin"}
 ]
 
 const site_size = [
