@@ -60,6 +60,11 @@ function generateHitPoints(stats, ancestry) {
     return baseHP + ancestryBonus;
 }
 
+function generateArmorClass(stats) {
+    const dexMod = stats.Dexterity.mod;
+    return 10 + dexMod;
+}
+
 function generateBackground() {
     const index = Math.floor(Math.random() * backgroundsData.length);
     return backgroundsData[index];
@@ -82,15 +87,16 @@ function generateCharacter() {
     const hitPoints = generateHitPoints(stats, ancestry);
     const background = generateBackground();
     const gear = generateLevel0Gear();
+    const armorClass = generateArmorClass(stats);
     
     return {
         ancestry,
         stats,
         hitPoints,
         background,
-        gear
+        gear,
+        armorClass
     };
-    
 }
 
 
@@ -130,7 +136,7 @@ buttonNumberOfCharacters.addEventListener('click', () => {
             table.appendChild(row);
         });
 
-        cardTitle.innerHTML = `Level 0 ${character.ancestry.ancestry}, HP${character.hitPoints}/${character.hitPoints}`;
+        cardTitle.innerHTML = `Level 0 ${character.ancestry.ancestry}, AC${character.armorClass}, HP${character.hitPoints}`;
         const cardNotes = document.createElement('p');
         cardNotes.innerHTML = `
             ${character.ancestry.notes}
