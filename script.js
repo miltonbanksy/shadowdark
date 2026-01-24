@@ -21,20 +21,25 @@ function roll_1dx(dieSize) { // Roll a single polyhedral die
 }
 
 function generateStats() {
-    let allStatsBag = [];
-    
-        for ( s = 1; s <= 6; s++ ) { // 6 stats for each character
-            let oneStatBag = [];
-            
-            for ( d = 1; d <= 3; d++ ) { // roll 3 dice for each stat
-                const threeDice = roll_1dx(6);
-                oneStatBag.push(threeDice);
-            }
-            
-            const sumThreeDice = oneStatBag.reduce((acc, curr) => acc + curr, 0);
-            allStatsBag.push(sumThreeDice);
+    const stats = {};
+
+    statNames.forEach(statName => {
+        let rolls = [];
+
+        for (let d = 0; d < 3; d++) {
+            rolls.push(roll_1dx(6));
         }
-        return allStatsBag;
+
+        const value = rolls.reduce((a, b) => a + b, 0);
+        const mod = getModifier(value);
+
+        stats[statName] = {
+            value: value,
+            mod: mod
+        };
+    });
+
+    return stats;
 }
 
 function generateAncestry() {
@@ -46,8 +51,9 @@ function generateAncestry() {
     return ancestry;
 }
 
-function generateHitPoints() {
-
+function generateHitPoints(stats) {
+    const conMod = stats.Constitution.mod;
+    return conMod < 1 ? 1 : conMod;
 }
 
 
@@ -66,7 +72,9 @@ buttonNumberOfCharacters.addEventListener('click', () => {
 
         ancestry = generateAncestry();
         ancestryBag.push(ancestry);
-        allStatsBag = generateStats();
+        
+        const stats = generateStats();
+        const hitPoints = generateHitPoints(stats);
 
         const characterCard = document.createElement('div');
         characterCard.classList.add('character-card');
@@ -75,20 +83,18 @@ buttonNumberOfCharacters.addEventListener('click', () => {
         
         const table = document.createElement('table');
 
-        statNames.forEach((statName, index) => {
-
-            const statValue = allStatsBag[index];
-            const mod = getModifier(statValue);
+        statNames.forEach(statName => {
+            const stat = stats[statName];
 
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${statName}</td>
-                <td>${statValue}</td>
-                <td>(${mod >= 0 ? '+' : ''}${mod})</td>
+                <td>${stat.value}</td>
+                <td>${stat.mod >= 0 ? '+' : ''}${stat.mod}</td>
             `;
             table.appendChild(row);
         });
-        cardTitle.innerHTML = `Level 0 ${ancestry.ancestry}`;
+        cardTitle.innerHTML = `Level 0 ${ancestry.ancestry}, HP${hitPoints}/${hitPoints}`;
         const cardNotes = document.createElement('p');
         cardNotes.innerHTML = ancestry.notes;
 
@@ -96,7 +102,6 @@ buttonNumberOfCharacters.addEventListener('click', () => {
         characterCard.appendChild(table);
         characterCard.appendChild(cardNotes);
         displayCharacters.appendChild(characterCard);
-        console.log(allStatsBag);
     }
 });
 
