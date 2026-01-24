@@ -47,7 +47,6 @@ function generateAncestry() {
     const dieRoll = roll_1dx(12);
 
     const ancestry = ancestryData.find(item => item.d12_target >= dieRoll);
-    console.log(ancestry.ancestry);
     
     return ancestry;
 }
@@ -60,16 +59,26 @@ function generateHitPoints(stats, ancestry) {
     return baseHP + ancestryBonus;
 }
 
+function generateBackground() {
+    const index = Math.floor(Math.random() * backgroundsData.length);
+    return backgroundsData[index];
+}
+
 function generateCharacter() {
     const ancestry = generateAncestry();
     const stats = generateStats();
     const hitPoints = generateHitPoints(stats, ancestry);
+    const background = generateBackground();
+    
+    console.log(background); // NOW DISPLAY THIS!
 
     return {
         ancestry,
         stats,
-        hitPoints
+        hitPoints,
+        background
     };
+    
 }
 
 
