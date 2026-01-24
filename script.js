@@ -11,6 +11,7 @@ let ancestryData = [];
 fetch('ancestry.json').then(res => res.json()).then(data => ancestryData = data);
 fetch('statsAndMods.json').then(res => res.json()).then(data => statsAndMods = data);
 fetch('backgrounds.json').then(res => res.json()).then(data => backgroundsData = data);
+fetch('gear_level_0.json').then(res => res.json()).then(data => gearLevel0Data = data);
 
 
 function getModifier(stat) {
@@ -64,19 +65,30 @@ function generateBackground() {
     return backgroundsData[index];
 }
 
+function generateLevel0Gear() {
+    let gearBag = [];
+    const gearAmount = roll_1dx(4);
+    for (let g = 0; g < gearAmount; g++) {
+        const index = Math.floor(Math.random() * gearLevel0Data.length);
+        const gearItem = gearLevel0Data[index];
+        gearBag.push(gearItem);
+    };
+    return gearBag;
+}
+
 function generateCharacter() {
     const ancestry = generateAncestry();
     const stats = generateStats();
     const hitPoints = generateHitPoints(stats, ancestry);
     const background = generateBackground();
+    const gear = generateLevel0Gear();
     
-    console.log(background); // NOW DISPLAY THIS!
-
     return {
         ancestry,
         stats,
         hitPoints,
-        background
+        background,
+        gear
     };
     
 }
@@ -120,7 +132,12 @@ buttonNumberOfCharacters.addEventListener('click', () => {
 
         cardTitle.innerHTML = `Level 0 ${character.ancestry.ancestry}, HP${character.hitPoints}/${character.hitPoints}`;
         const cardNotes = document.createElement('p');
-        cardNotes.innerHTML = character.ancestry.notes;
+        cardNotes.innerHTML = `
+            ${character.ancestry.notes}
+            <br><br>Background: ${character.background.background}. ${character.background.notes}
+            <br><br>Gear:
+            <br>• ${character.gear.join("<br>• ")}
+        `;
 
         characterCard.appendChild(cardTitle);
         characterCard.appendChild(table);

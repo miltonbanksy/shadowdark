@@ -1,38 +1,38 @@
 [
     {
         "d12_target": 4,
-        "ancestry": "human",
+        "ancestry": "Human",
         "hp_bonus": 0,
-        "notes": "Bold, adaptable, and diverse people who learn quickly and accomplish mighty deeds. You know the Common language and one additional common language (pg. 32). Ambitious. You gain one additional talent roll at 1st level."
+        "notes": "Humans are bold, adaptable, and diverse people who learn quickly and accomplish mighty deeds.<br><br>You know the Common language and one additional common language.<br><br>Ambitious. You gain one additional talent roll at 1st level."
     },
     {
         "d12_target": 6,
-        "ancestry": "elf",
+        "ancestry": "Elf",
         "hp_bonus": 0,
-        "notes": "Ethereal, graceful people who revere knowledge and beauty. Elves see far and live long. You know the Common, Elvish, and Sylvan languages. Farsight. You get a +1 bonus to attack rolls with ranged weapons or a +1 bonus to spellcasting checks."
+        "notes": "Elves are ethereal, graceful people who revere knowledge and beauty. Elves see far and live long.<br><br>You know the Common, Elvish, and Sylvan languages.<br><br>Farsight. You get a +1 bonus to attack rolls with ranged weapons or a +1 bonus to spellcasting checks."
     },
     {
         "d12_target": 8,
-        "ancestry": "dwarf",
+        "ancestry": "Dwarf",
         "hp_bonus": 2,
-        "notes": "Brave, stalwart folk as sturdy as the stone kingdoms they carve inside mountains. You know the Common and Dwarvish languages. Stout. Start with +2 HP. Roll hit points per level with advantage."
+        "notes": "Dwarves are brave, stalwart folk as sturdy as the stone kingdoms they carve inside mountains.<br><br>You know the Common and Dwarvish languages.<br><br>Stout. Start with +2 HP. Roll hit points per level with advantage."
     },
     {
         "d12_target": 10,
-        "ancestry": "halfling",
+        "ancestry": "Halfling",
         "hp_bonus": 0,
-        "notes": "Small, cheerful country folk with mischievous streaks. They enjoy life's simple pleasures. You know the Common language. Stealthy. Once per day, you can become invisible for 3 rounds"
+        "notes": "Halflings are small, cheerful country folk with mischievous streaks. They enjoy life's simple pleasures.<br><br>You know the Common language.<br><br>Stealthy. Once per day, you can become invisible for 3 rounds"
     },
     {
         "d12_target": 11,
-        "ancestry": "half-orc",
+        "ancestry": "Half-Orc",
         "hp_bonus": 0,
-        "notes": "Towering, tusked warriors who are as daring as humans and as relentless as orcs. You know the Common and Orcish languages. Mighty. You have a +1 bonus to attack and damage rolls with melee weapons."
+        "notes": "Half-Orcs are towering, tusked warriors who are as daring as humans and as relentless as orcs.<br><br>You know the Common and Orcish languages.<br><br>Mighty. You have a +1 bonus to attack and damage rolls with melee weapons."
     },
     {
         "d12_target": 12,
-        "ancestry": "goblin",
+        "ancestry": "Goblin",
         "hp_bonus": 0,
-        "notes": "Green, clever beings who thrive in dark, cramped places. As fierce as they are tiny. You know the Common and Goblin languages. Keen Senses. You can't be surprised."
+        "notes": "Green, clever beings who thrive in dark, cramped places. As fierce as they are tiny.<br><br>You know the Common and Goblin languages.<br><br>Keen Senses. You can't be surprised."
     }
 ]
