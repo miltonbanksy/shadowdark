@@ -51,9 +51,24 @@ function generateAncestry() {
     return ancestry;
 }
 
-function generateHitPoints(stats) {
+function generateHitPoints(stats, ancestry) {
     const conMod = stats.Constitution.mod;
-    return conMod < 1 ? 1 : conMod;
+    const baseHP = conMod < 1 ? 1 : conMod;
+    const ancestryBonus = ancestry.hp_bonus ?? 0;
+
+    return baseHP + ancestryBonus;
+}
+
+function generateCharacter() {
+    const ancestry = generateAncestry();
+    const stats = generateStats();
+    const hitPoints = generateHitPoints(stats, ancestry);
+
+    return {
+        ancestry,
+        stats,
+        hitPoints
+    };
 }
 
 
@@ -70,11 +85,9 @@ buttonNumberOfCharacters.addEventListener('click', () => {
     
     for (c = 1; c <= numberOfCharacters; c++ ) {
 
-        ancestry = generateAncestry();
         ancestryBag.push(ancestry);
         
-        const stats = generateStats();
-        const hitPoints = generateHitPoints(stats);
+        const character = generateCharacter();
 
         const characterCard = document.createElement('div');
         characterCard.classList.add('character-card');
@@ -84,7 +97,7 @@ buttonNumberOfCharacters.addEventListener('click', () => {
         const table = document.createElement('table');
 
         statNames.forEach(statName => {
-            const stat = stats[statName];
+            const stat = character.stats[statName];
 
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -94,9 +107,10 @@ buttonNumberOfCharacters.addEventListener('click', () => {
             `;
             table.appendChild(row);
         });
-        cardTitle.innerHTML = `Level 0 ${ancestry.ancestry}, HP${hitPoints}/${hitPoints}`;
+
+        cardTitle.innerHTML = `Level 0 ${character.ancestry.ancestry}, HP${character.hitPoints}/${character.hitPoints}`;
         const cardNotes = document.createElement('p');
-        cardNotes.innerHTML = ancestry.notes;
+        cardNotes.innerHTML = character.ancestry.notes;
 
         characterCard.appendChild(cardTitle);
         characterCard.appendChild(table);
