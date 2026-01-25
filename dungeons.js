@@ -5,6 +5,28 @@ const dungeon_type = [
     {roll: 6, type: "Ruin"}
 ]
 
+const room_types = [
+    {roll: 2, feature: "Empty", action: ""},
+    {roll: 3, feature: "Trap", action: () => generateTrap()},
+    {roll: 4, feature: "Minor hazard", action: () => generateMinorHazard()},
+    {roll: 5, feature: "Solo monster", action: () => generateSoloMonster()},
+    {roll: 6, feature: "NPC", action: () => generateNPC()},
+    {roll: 7, feature: "Monster mob", action: () => generateMonsterMob()},
+    {roll: 8, feature: "Major Hazard", action: () => generateMajorHazard()},
+    {roll: 9, feature: "Treasure", action: () => generateTreasure()},
+    {roll: 10, feature: "Boss Monster", action: () => generateBossMonster()},
+]
+
+// in progress...
+/*
+const traps = [
+    {
+        detail1: ["crude", "ranged", "sturdy"],
+        detail2: []
+    }
+]
+*/
+
 const site_size = [
     {roll: 2, type: "Small", rooms: 5, dice: () => roll_xdx(5, 10)},
     {roll: 5, type: "Medium", rooms: 8, dice: () => roll_xdx(8, 10)},
@@ -21,6 +43,10 @@ function roll_xdx(number_of_dice, size_of_dice) {
         dicePool.push(die);
     }
     return dicePool;
+}
+
+function generateTrap() {
+    //...
 }
 
 function generateDungeonSize() {
