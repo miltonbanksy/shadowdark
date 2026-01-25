@@ -49,31 +49,51 @@ function generateTrap() {
     //...
 }
 
-function generateDungeonSize() {
-    const d6 = roll_xdx(1, 6)[0];
-    return site_size.find(s => s.roll >= d6);
+function generateMinorHazard() {
+    //...
 }
 
-function generateDungeonType() {
-    const d6 = roll_xdx(1, 6)[0];
-    console.log(`d6: ${d6}`)
-    return dungeon_type.find(s => s.roll >= d6);
+function generateSoloMonster() {
+    //...
+}
+
+function generateNPC() {
+    //...
+}
+
+function generateMonsterMob() {
+    //...
+}
+
+function generateMajorHazard() {
+    //...
+}
+
+function generateTreasure() {
+    //...
+}
+
+function generateBossMonster() {
+    //...
+}
+
+// One function for all...
+function generateDungeonAspect(array, number_of_dice, size_of_dice) {
+    const bestDie = roll_xdx(number_of_dice, size_of_dice)[0];
+    return array.find(x => x.roll >= bestDie);
 }
 
 function generateDungeonDetails() {
-    const dungeonType = generateDungeonType();
-    const dungeonSize = generateDungeonSize();
-
-    // Safety Net:
-    if (!dungeonType || !dungeonSize) {
-        throw new Error("Dungeon generation failed: Invalid table result");
-    }
+    //const dungeonType = generateDungeonAspect(dungeon_type, 1, 6);
+    const dungeonSize = generateDungeonAspect(site_size, 1, 6);
+    //const roomType = generateRoomType();
 
     return {
-        dungeonType,
-        dungeonSize,
+        dungeonType: generateDungeonAspect(dungeon_type, 1, 6),
+        dungeonSize: generateDungeonAspect(site_size, 1, 6),
         numberOfRooms: dungeonSize.rooms,
         roomKeys: dungeonSize.dice()
+        //roomType
     }
 }
 
