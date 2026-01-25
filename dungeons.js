@@ -17,16 +17,6 @@ const room_types = [
     {roll: 10, feature: "Boss Monster", action: () => generateBossMonster()},
 ]
 
-// in progress...
-/*
-const traps = [
-    {
-        detail1: ["crude", "ranged", "sturdy"],
-        detail2: []
-    }
-]
-*/
-
 const site_size = [
     {roll: 2, type: "Small", rooms: 5, dice: () => roll_xdx(5, 10)},
     {roll: 5, type: "Medium", rooms: 8, dice: () => roll_xdx(8, 10)},
@@ -77,6 +67,15 @@ function generateBossMonster() {
     //...
 }
 
+function generateRoomTypes(roomKeys) {
+    let rooms = [];
+    roomKeys.forEach(key => {
+        const room = room_types.find(type => type.roll >= key);
+        rooms.push(room);
+    })
+    return rooms;
+}
+
 // One function for all...
 function generateDungeonAspect(array, number_of_dice, size_of_dice) {
     const bestDie = roll_xdx(number_of_dice, size_of_dice)[0];
@@ -84,16 +83,18 @@ function generateDungeonAspect(array, number_of_dice, size_of_dice) {
 }
 
 function generateDungeonDetails() {
-    //const dungeonType = generateDungeonAspect(dungeon_type, 1, 6);
+    const dungeonType = generateDungeonAspect(dungeon_type, 1, 6);
     const dungeonSize = generateDungeonAspect(site_size, 1, 6);
-    //const roomType = generateRoomType();
+    const numberOfRooms = dungeonSize.rooms;
+    const roomKeys = dungeonSize.dice();
+    const roomType = generateRoomTypes(roomKeys);
 
     return {
-        dungeonType: generateDungeonAspect(dungeon_type, 1, 6),
-        dungeonSize: generateDungeonAspect(site_size, 1, 6),
-        numberOfRooms: dungeonSize.rooms,
-        roomKeys: dungeonSize.dice()
-        //roomType
+        dungeonType,
+        dungeonSize,
+        numberOfRooms,
+        roomKeys,
+        roomType
     }
 }
 
@@ -102,7 +103,8 @@ buttonGenerateDungeon.addEventListener('click', () => {
     const dungeonDetails = generateDungeonDetails();
 
     displayDungeon.innerHTML = `
-        ${dungeonDetails.dungeonSize.type} ${dungeonDetails.dungeonType.type} (${dungeonDetails.numberOfRooms} rooms)
-        <br>${dungeonDetails.roomKeys}
+        <h2>${dungeonDetails.dungeonSize.type} ${dungeonDetails.dungeonType.type} (${dungeonDetails.numberOfRooms} rooms)</h2>
+        <h3>Rooms</h3>
+        ${dungeonDetails.roomType.map(r => r.feature).join('<br>')}
     `;
 });
